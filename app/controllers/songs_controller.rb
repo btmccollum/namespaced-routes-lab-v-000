@@ -7,7 +7,6 @@ class SongsController < ApplicationController
       if @artist.nil?
         redirect_to artists_path, alert: "Artist not found"
       elsif @preferences && @preferences.song_sort_order
-        binding.pry
         @songs = @artist.songs.order(title: @preferences.song_sort_order)
       else
         @songs = @artist.songs
@@ -22,7 +21,7 @@ class SongsController < ApplicationController
       @artist = Artist.find_by(id: params[:artist_id])
       @song = @artist.songs.find_by(id: params[:id])
       if @song.nil?
-        redirect_to artist_songs_path(@artist), alert: "Song not found"
+        redirect_to artist_songs_path(@artist), alert: "Song not found."
       end
     else
       @song = Song.find(params[:id])
@@ -30,10 +29,10 @@ class SongsController < ApplicationController
   end
 
   def new
-    if Preference.last.allow_create_songs
+    if @preferences && @preferences.allow_create_songs
       @song = Song.new
     else
-      redirect_to songs_path
+      redirect_to songs_path, alert: "Creation of new songs not allowed."
     end
   end
 
