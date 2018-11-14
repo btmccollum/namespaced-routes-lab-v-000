@@ -1,0 +1,49 @@
+<h1>Settings:</h1>
+
+<%= form_for @preferences, url: admin_preference_path(@preferences) do |f| %>
+    <p>
+    <%= f.label :allow_create_artists, "Permit Creation of Artists?" %><br>
+        <% if @preferences.allow_create_artists == true %>
+            True: <%= f.radio_button :allow_create_artists, true, checked: true %><br>
+            False: <%= f.radio_button :allow_create_artists, false %> 
+        <% else %>
+            True: <%= f.radio_button :allow_create_artists, true %><br>
+            False: <%= f.radio_button :allow_create_artists, false, checked: true %> 
+        <% end %>
+    </p>
+
+    <p>
+    <%= f.label :allow_create_songs, "Permit Creation of Songs?" %><br>
+        <% if @preferences.allow_create_songs == true %>
+            True: <%= f.radio_button :allow_create_songs, true, checked: true %><br>
+            False: <%= f.radio_button :allow_create_songs, false %> 
+        <% else %>
+            True: <%= f.radio_button :allow_create_songs, true %><br>
+            False: <%= f.radio_button :allow_create_songs, false, checked: true %> 
+        <% end %>
+    </p>
+
+    <p>
+    <%= f.label :artist_sort_order, "Artist Sorting Order:" %><br>
+        <% if @preferences.artist_sort_order == "ASC" %>
+            Ascending: <%= f.radio_button :artist_sort_order, "ASC", checked: true %><br>
+            Descending: <%= f.radio_button :artist_sort_order, "DESC" %> 
+        <% else %>
+            Ascending: <%= f.radio_button :artist_sort_order, "ASC" %><br>
+            Descending: <%= f.radio_button :artist_sort_order, "DESC", checked: true %> 
+        <% end %>
+    </p>
+
+    <p>
+    <%= f.label :song_sort_order, "Song Sorting Order:" %><br>
+        <% if @preferences.song_sort_order == "ASC" %>
+            Ascending: <%= f.radio_button :song_sort_order, "ASC", checked: true %><br>
+            Descending: <%= f.radio_button :song_sort_order, "DESC" %> 
+        <% else %>
+            Ascending: <%= f.radio_button :song_sort_order, "ASC" %><br>
+            Descending: <%= f.radio_button :song_sort_order, "DESC", checked: true %> 
+        <% end %>
+    </p>
+
+    <%= f.submit %>
+<% end %>
